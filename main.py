@@ -48,7 +48,11 @@ class ConnectFour:
         neighbouringCount = 0
         for i in range(1, 5):
             for io in range(1, 4):
-                theYPosition = y + io if i == 1 or i == 2 else y - io
+                if neighbouringCount == 3:
+                    break
+                if i == 3:
+                    neighbouringCount = 0
+                theYPosition = y + io if i == 1 or i == 3 else y - io
                 theXPosition = x + io if i == 1 or i == 3 else x - io
                 if neighbouringCount < 3 and 0 <= theXPosition < self.x and 0 <= theYPosition < self.y:
                     if self.table[theYPosition][theXPosition] == team:
