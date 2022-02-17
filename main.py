@@ -16,7 +16,6 @@ class ConnectFour:
     def changePositionValue(self, y: int, x: int, value: int) -> bool:
         # if value <= 3 & rows < self.rows & cols < self.cols:
         self.table[y][x] = value
-
         return self.checkForWinVertically(y=y, x=x, team=value) \
                 or self.checkForWinHorizontally(y=y, x=x, team=value) \
                 or self.checkForWinDiagonally(y=y, x=x, team=value)
@@ -33,7 +32,6 @@ class ConnectFour:
 
     def checkForWinHorizontally(self, y, x, team) -> bool:
         neighbouringCount = 0
-
         for i in range(1, 3):
             for io in range(1, 4):
                 theXPosition = x + io if i != 1 else x - io
@@ -75,16 +73,26 @@ def main():
         if i != 1:
             board.printWholeBoard()
         print(f'Please enter the row number player ${player}')
-        rowNum = int(input()) - 1
-        inputResult = board.dropPiece(x=rowNum, team=player)
+        rowNum = input()
+        inputResult = 0
+
+        if rowNum.isnumeric():
+            inputResult = board.dropPiece(x=int(rowNum), team=player)
+
         if inputResult == 0:
             while True:
                 board.printWholeBoard()
                 print(f'Please enter a valid row number player ${player}')
-                rowNum = int(input()) - 1
-                inputResult = board.dropPiece(x=rowNum, team=player)
+                rowNum = input()
+
+                if rowNum.isnumeric():
+                    inputResult = board.dropPiece(x=int(rowNum), team=player)
+                else:
+                    inputResult = 0
+
                 if inputResult != 0:
                     break
+
         if inputResult == 2:
             board.printWholeBoard()
             print(f'Player ${player} win!')
