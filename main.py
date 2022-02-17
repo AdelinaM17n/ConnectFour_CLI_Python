@@ -77,7 +77,7 @@ def main():
         inputResult = 0
 
         if rowNum.isnumeric():
-            inputResult = board.dropPiece(x=int(rowNum), team=player)
+            inputResult = board.dropPiece(x=int(rowNum) - 1, team=player)
 
         if inputResult == 0:
             while True:
@@ -86,7 +86,7 @@ def main():
                 rowNum = input()
 
                 if rowNum.isnumeric():
-                    inputResult = board.dropPiece(x=int(rowNum), team=player)
+                    inputResult = board.dropPiece(x=int(rowNum) - 1, team=player)
                 else:
                     inputResult = 0
 
